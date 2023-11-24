@@ -3,7 +3,7 @@
 SharedEvents.Notify += Log;
 
 const string
-	artworkFileName = "artwork";
+	artworkFileName = "cover";
 
 string
 	directoryPath = AppDomain.CurrentDomain.BaseDirectory;
