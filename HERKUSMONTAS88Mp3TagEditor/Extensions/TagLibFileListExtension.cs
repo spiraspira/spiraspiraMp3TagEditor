@@ -1,6 +1,6 @@
 ﻿namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
 
-public static class TagLibFileExtension
+public static class TagLibFileListExtension
 {
 	public static void SaveAll(this List<TagLib.File> files)
 	{

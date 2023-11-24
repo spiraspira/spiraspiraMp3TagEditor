@@ -1,4 +1,6 @@
-﻿SharedEvents.Notify += Log;
+﻿using HERKUSMONTAS88Mp3TagEditor.Statics;
+
+SharedEvents.Notify += Log;
 
 const string
 	artworkFileName = "artwork";
@@ -15,12 +17,12 @@ string?
 	artwork = GetArtworkFilePath(directoryPath, artworkFileName, artworkExtensions);
 
 string
-	artist = InputString("Artist: "),
-	album = InputString("Album: "),
-	genre = InputString("Genre: ");
+	artist = ConsoleReader.ReadString("Artist: "),
+	album = ConsoleReader.ReadString("Album: "),
+	genre = ConsoleReader.ReadString("Genre: ");
 
 uint
-	year = InputUInt32("Year: ");
+	year = ConsoleReader.ReadUInt32("Year: ");
 
 List<(uint, string)>
 	numberTitleDictionary = new();
@@ -146,32 +148,6 @@ static void FilesToTaggedFiles(List<string> files, ref List<TagLib.File> taggedF
 	{
 		taggedFiles.Add(TagLib.File.Create(file));
 	}
-}
-
-static string InputString(string message)
-{
-	string input;
-
-	do
-	{
-		Console.Write(message);
-
-		input = Console.ReadLine()!;
-	} while (string.IsNullOrWhiteSpace(input));
-
-	return input;
-}
-
-static uint InputUInt32(string message)
-{
-	uint input;
-
-	do
-	{
-		Console.Write(message);
-	} while (!uint.TryParse(Console.ReadLine(), out input));
-
-	return input;
 }
 
 static void Log(string? message, bool? isPositive = null)
