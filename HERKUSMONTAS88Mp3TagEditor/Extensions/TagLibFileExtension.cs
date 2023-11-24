@@ -18,16 +18,16 @@ public static class TagLibFileExtension
 		Notify?.Invoke($"Album <{album}> is set.", true);
 	}
 
-	public static void SetCover(this List<TagLib.File> files, string? coverFilePath)
+	public static void SetArtwork(this List<TagLib.File> files, string? artworkFilePath)
 	{
-		if (coverFilePath == null)
+		if (artworkFilePath == null)
 		{
 			Notify?.Invoke("Artwork is not set.", false);
 
 			return;
 		}
 		
-		files.ToList().ForEach(f => f.Tag.Pictures = new IPicture[] { new Picture(coverFilePath) });
+		files.ToList().ForEach(f => f.Tag.Pictures = new IPicture[] { new Picture(artworkFilePath) });
 
 		Notify?.Invoke("Artwork is set.", true);
 	}

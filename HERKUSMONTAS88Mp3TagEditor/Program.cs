@@ -1,18 +1,18 @@
 ﻿TagLibFileExtension.Notify += Log;
 
 const string
-	coverFileName = "cover";
+	artworkFileName = "artwork";
 
 string
 	directoryPath = AppDomain.CurrentDomain.BaseDirectory;
 
 List<string>
 	audioExtensions = new() { "mp3", "wav", "flac" },
-	coverExtensions = new() { "jpg", "png" },
+	artworkExtensions = new() { "jpg", "png" },
 	audioFiles = GetFiles(directoryPath, audioExtensions);
 
 string?
-	cover = GetCoverFilePath(directoryPath, coverFileName, coverExtensions);
+	artwork = GetArtworkFilePath(directoryPath, artworkFileName, artworkExtensions);
 
 string
 	artist = InputString("Artist: "),
@@ -36,7 +36,7 @@ taggedAudioFiles.SetAlbum(album);
 
 taggedAudioFiles.SetArtist(artist);
 
-taggedAudioFiles.SetCover(cover);
+taggedAudioFiles.SetArtwork(artwork);
 
 taggedAudioFiles.SetGenre(genre);
 
@@ -54,35 +54,35 @@ return;
 
 static void ApplicationExit()
 {
-	Log("Press any key to exit...", null);
+	Log("Press any key to exit...");
 
 	Console.ReadKey();
 
 	Environment.Exit(0);
 }
 
-static string? GetCoverFilePath(string directoryPath, string coverFileName, List<string> coverFileExtensions)
+static string? GetArtworkFilePath(string directoryPath, string artworkFileName, List<string> artworkFileExtensions)
 {
-	string? coverFilePath = null;
+	string? artworkFilePath = null;
 
-	foreach (var coverFileExtension in coverFileExtensions)
+	foreach (var artworkFileExtension in artworkFileExtensions)
 	{
-		coverFilePath = Directory
+		artworkFilePath = Directory
 			.EnumerateFiles(directoryPath, "*.*", SearchOption.TopDirectoryOnly)
-			.FirstOrDefault(file => Path.GetFileName(file).Equals($"{coverFileName}.{coverFileExtension}"));
+			.FirstOrDefault(file => Path.GetFileName(file).Equals($"{artworkFileName}.{artworkFileExtension}"));
 
-		if (coverFilePath is not null)
+		if (artworkFilePath is not null)
 		{
 			break;
 		}
 	}
 
-	if (coverFilePath is null)
+	if (artworkFilePath is null)
 	{
-		Log($"Cover file {coverFileName}.{string.Join('/', coverFileExtensions)} not found.", false);
+		Log($"Artwork file {artworkFileName}.{string.Join('/', artworkFileExtensions)} not found.", false);
 	}
 
-	return coverFilePath;
+	return artworkFilePath;
 }
 
 static List<string> GetFiles(string directoryPath, List<string> extensions)
