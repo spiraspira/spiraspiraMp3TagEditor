@@ -29,11 +29,14 @@ string
 uint
 	year = ConsoleReader.ReadUInt32("Year: ");
 
+var
+	numbersAndTitles = audioFiles.ToNumberTitleList();
+
 List<uint>
-	numbers = audioFiles.ToNumberTitleList().Select(t => t.Item1).ToList();
+	numbers = numbersAndTitles.Select(t => t.Item1).ToList();
 
 List<string>
-	titles = audioFiles.ToNumberTitleList().Select(t => t.Item2).ToList();
+	titles = numbersAndTitles.Select(t => t.Item2).ToList();
 
 List<TagLib.File>
 	taggedAudioFiles = audioFiles.ToTaggedFiles();
