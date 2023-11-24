@@ -27,8 +27,11 @@ string
 uint
 	year = ConsoleReader.ReadUInt32("Year: ");
 
-List<(uint, string)>
-	numberTitleDictionary = audioFiles.ToNumberTitleList();
+List<uint>
+	numbers = audioFiles.ToNumberTitleList().Select(t => t.Item1).ToList();
+
+List<string>
+	titles = audioFiles.ToNumberTitleList().Select(t => t.Item2).ToList();
 
 List<TagLib.File>
 	taggedAudioFiles = audioFiles.ToTaggedFiles();
@@ -41,9 +44,9 @@ taggedAudioFiles.SetArtwork(artwork);
 
 taggedAudioFiles.SetGenre(genre);
 
-taggedAudioFiles.SetNumbers(numberTitleDictionary.Select(item1 => item1.Item1).ToList());
+taggedAudioFiles.SetNumbers(numbers);
 
-taggedAudioFiles.SetTitles(numberTitleDictionary.Select(item2 => item2.Item2).ToList());
+taggedAudioFiles.SetTitles(titles);
 
 taggedAudioFiles.SetYear(year);
 
