@@ -1,5 +1,9 @@
 ﻿SharedEvents.Notify += Log;
 
+List<string>
+	audioExtensions = new() { "mp3", "wav", "flac" },
+	artworkExtensions = new() { "jpg", "png" };
+
 const string
 	artworkFileName = "cover";
 
@@ -7,8 +11,6 @@ string
 	directoryPath = AppDomain.CurrentDomain.BaseDirectory;
 
 List<string>
-	audioExtensions = new() { "mp3", "wav", "flac" },
-	artworkExtensions = new() { "jpg", "png" },
 	audioFiles = FileReader.GetFiles(directoryPath, audioExtensions);
 
 if (audioFiles.Count == 0)
