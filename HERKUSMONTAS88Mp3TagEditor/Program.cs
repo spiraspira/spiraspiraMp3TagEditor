@@ -1,4 +1,4 @@
-﻿TagLibFileExtension.Notify += Log;
+﻿SharedEvents.Notify += Log;
 
 const string
 	artworkFileName = "artwork";
