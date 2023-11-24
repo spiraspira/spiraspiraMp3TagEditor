@@ -1,6 +1,4 @@
-﻿using HERKUSMONTAS88Mp3TagEditor.Statics;
-
-SharedEvents.Notify += Log;
+﻿SharedEvents.Notify += Log;
 
 const string
 	artworkFileName = "cover";
