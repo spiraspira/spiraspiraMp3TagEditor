@@ -64,24 +64,17 @@ static void ApplicationExit()
 
 static void Log(string? message, bool? isPositive = null)
 {
-	switch (isPositive)
+	Console.ForegroundColor = isPositive switch
 	{
-		case true:
-		{
-			Console.ForegroundColor = ConsoleColor.Green;
-
-			break;
-		}
-
-		case false:
-		{
-			Console.ForegroundColor = ConsoleColor.Red;
-
-			break;
-		}
-	}
+		true => ConsoleColor.Green,
+		false => ConsoleColor.Red,
+		_ => Console.ForegroundColor
+	};
 
 	Console.WriteLine($"[{message}]");
 
-	Console.ForegroundColor = ConsoleColor.White;
+	if (isPositive is not null)
+	{
+		Console.ForegroundColor = ConsoleColor.White;
+	}
 }
