@@ -8,7 +8,7 @@ public static class SharedEvents
 	/// <summary>
 	/// Notifies with some message and it's mood (positive or negative).
 	/// </summary>
-	private static event Action<string, bool?>? Notify;
+	public static event Action<string, bool?>? Notify;
 
 	/// <summary>
 	/// Invokes <see cref="Notify"/>.
