@@ -4,9 +4,23 @@ public static class TagLibFileListExtension
 {
 	public static void SaveAll(this List<TagLib.File> files)
 	{
-		files.ToList().ForEach(f => f.Save());
+		foreach (var file in files.ToList())
+		{
+			string fileName = Path.GetFileName(file.Name);
 
-		SharedEvents.InvokeNotify("Tags saved.", true);
+			try
+			{
+				file.Save();
+
+				SharedEvents.InvokeNotify($"Tags for {fileName} are saved.", true);
+			}
+			catch (IOException)
+			{
+				var processes = FileUtil.WhoIsLocking(file.Name).Select(process => process.ProcessName).ToList();
+
+				SharedEvents.InvokeNotify($"Couldn't save: {fileName} is locked by {string.Join(' ', processes)}.", false);
+			}
+		}
 	}
 
 	public static void SetAlbum(this List<TagLib.File> files, string album)
