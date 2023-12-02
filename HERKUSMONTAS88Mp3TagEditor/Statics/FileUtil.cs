@@ -1,5 +1,12 @@
 ﻿using System.Runtime.InteropServices;
 using System.Diagnostics;
+// ReSharper disable All
+#pragma warning disable CA2101
+#pragma warning disable SYSLIB1054
+#pragma warning disable IDE0018
+#pragma warning disable CA1806
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning disable IDE0090
 
 namespace HERKUSMONTAS88Mp3TagEditor.Statics;
 
