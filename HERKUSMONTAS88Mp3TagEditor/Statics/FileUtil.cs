@@ -1,8 +1,18 @@
 ﻿using System.Runtime.InteropServices;
 using System.Diagnostics;
+// ReSharper disable All
+#pragma warning disable CA2101
+#pragma warning disable SYSLIB1054
+#pragma warning disable IDE0018
+#pragma warning disable CA1806
+#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
+#pragma warning disable IDE0090
 
 namespace HERKUSMONTAS88Mp3TagEditor.Statics;
 
+/// <summary>
+/// Taken from StackOverflow: <a href="https://stackoverflow.com/a/20623311">source.</a>
+/// </summary>
 public static class FileUtil
 {
 	[StructLayout(LayoutKind.Sequential)]
