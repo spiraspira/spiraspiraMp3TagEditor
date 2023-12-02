@@ -1,12 +1,26 @@
-﻿namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
+﻿using System.Diagnostics;
+
+namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
 
 public static class TagLibFileListExtension
 {
 	public static void SaveAll(this List<TagLib.File> files)
 	{
-		files.ToList().ForEach(f => f.Save());
+		foreach (var file in files.ToList())
+		{
+			string fileName = Path.GetFileName(file.Name);
 
-		SharedEvents.InvokeNotify("Tags saved.", true);
+			try
+			{
+				file.Save();
+
+				SharedEvents.InvokeNotify($"Tags for {fileName} are saved.", true);
+			}
+			catch (IOException)
+			{
+				SharedEvents.InvokeNotify($"Couldn't save: {fileName} is locked.", false);
+			}
+		}
 	}
 
 	public static void SetAlbum(this List<TagLib.File> files, string album)
