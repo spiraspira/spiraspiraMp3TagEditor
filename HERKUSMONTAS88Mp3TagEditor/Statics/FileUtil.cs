@@ -3,6 +3,9 @@ using System.Diagnostics;
 
 namespace HERKUSMONTAS88Mp3TagEditor.Statics;
 
+/// <summary>
+/// Taken from StackOverflow: <a href="https://stackoverflow.com/a/20623311">source.</a>
+/// </summary>
 public static class FileUtil
 {
 	[StructLayout(LayoutKind.Sequential)]
