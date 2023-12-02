@@ -29,7 +29,7 @@ string
 uint
 	year = ConsoleReader.ReadUInt32("Year: ");
 
-var
+NumbersTitlesList
 	numbersAndTitles = audioFiles.ToNumberTitleList();
 
 List<uint>

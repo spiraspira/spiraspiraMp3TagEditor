@@ -2,11 +2,11 @@
 
 public static class StringListExtension
 {
-	public static List<(uint, string)> ToNumberTitleList(this List<string> files)
+	public static NumbersTitlesList ToNumberTitleList(this List<string> files)
 	{
 		var fileNames = files.Select(Path.GetFileNameWithoutExtension).ToList()!;
 
-		List<(uint, string)> dictionary = new();
+		NumbersTitlesList dictionary = new();
 
 		foreach (var file in fileNames)
 		{
