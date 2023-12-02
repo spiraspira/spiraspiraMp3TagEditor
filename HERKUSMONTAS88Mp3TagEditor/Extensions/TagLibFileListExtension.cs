@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
+﻿namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
 
 public static class TagLibFileListExtension
 {
@@ -18,7 +16,9 @@ public static class TagLibFileListExtension
 			}
 			catch (IOException)
 			{
-				SharedEvents.InvokeNotify($"Couldn't save: {fileName} is locked.", false);
+				var processes = FileUtil.WhoIsLocking(file.Name).Select(process => process.ProcessName).ToList();
+
+				SharedEvents.InvokeNotify($"Couldn't save: {fileName} is locked by {string.Join(' ', processes)}.", false);
 			}
 		}
 	}
