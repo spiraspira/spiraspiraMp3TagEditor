@@ -10,43 +10,43 @@ public static class StringListExtension
 	/// file paths to <see cref="List{T}"/> of <see cref="Tuple"/> (<see cref="uint"/>, <see cref="string"/>)/>
 	/// </summary>
 	/// <param name="files">File paths by specified rules.</param>
+	/// <param name="patterns">List of patterns.</param>
 	/// <returns>List of numbers and titles.</returns>
-	public static NumbersTitlesList ToNumberTitleList(this List<string> files)
+	public static NumberTitleList ToNumberTitleList(this List<string> files, List<Regex> patterns)
 	{
-		var fileNames = files.Select(Path.GetFileNameWithoutExtension).ToList()!;
+		return files
+			.Select(Path.GetFileNameWithoutExtension)
+			.Select(fileName => GetNumberTitle(fileName!, patterns))
+			.ToList();
 
-		NumbersTitlesList dictionary = new();
-
-		foreach (var file in fileNames)
+		NumberTitle GetNumberTitle(string fileName, List<Regex> patterns)
 		{
-			uint number = 0;
+			uint number = default;
 
-			string name = string.Empty;
+			string title = string.Empty;
 
-			try
+			var match = GetMatch(fileName, patterns);
+
+			if (match is null)
 			{
-				number = uint.Parse(file!.Split()[0].Remove(file.Split()[0].IndexOf('.'), 1));
-
-				name = file[(file.IndexOf(' ') + 1)..];
+				SharedEvents.InvokeNotify($"Incorrect file name: {fileName}. Couldn't set number and title.", false);
 			}
-			catch
+			else
 			{
-				try
-				{
-					number = uint.Parse(file!.Split()[0]);
+				number = uint.Parse(match.Groups[1].Value);
 
-					name = file[(file.IndexOf(' ') + 1)..];
-				}
-				catch
-				{
-					SharedEvents.InvokeNotify($"Incorrect file name: {file}", false);
-				}
+				title = match.Groups[2].Value;
 			}
 
-			dictionary.Add((number, name));
+			return new NumberTitle(number, title);
+
+			Match? GetMatch(string input, List<Regex> patterns)
+			{
+				return patterns
+					.FirstOrDefault(pattern => pattern.IsMatch(input))?
+					.Match(input);
+			}
 		}
-
-		return dictionary;
 	}
 
 	/// <summary>
