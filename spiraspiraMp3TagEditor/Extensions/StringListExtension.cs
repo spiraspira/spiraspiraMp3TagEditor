@@ -1,4 +1,4 @@
-﻿namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
+﻿namespace spiraspiraMp3TagEditor.Extensions;
 
 /// <summary>
 /// Contains extension methods for <see cref="List{T}"/> of <see cref="string"/>.
@@ -43,7 +43,7 @@ public static class StringListExtension
 			Match? GetMatch(string input, List<Regex> patterns)
 			{
 				return patterns
-					.FirstOrDefault(pattern => pattern.IsMatch(input))?
+					.Find(pattern => pattern.IsMatch(input))?
 					.Match(input);
 			}
 		}

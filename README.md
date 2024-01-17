@@ -1,5 +1,6 @@
 # spiraspiraMp3TagEditor
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://travis-ci.org/joemccann/dillinger)
+<sup>Powered by</sup> [![taglib-sharp](https://avatars.githubusercontent.com/u/53395?s=20&v=4)<sub>taglib-sharp</sub>](https://github.com/mono/taglib-sharp)
+
 Portable console application for editing music files tags in a folder with auto-detecting track numbers and titles based on file names.
 
 ## Usage

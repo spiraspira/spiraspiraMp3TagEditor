@@ -1,4 +1,4 @@
-﻿namespace HERKUSMONTAS88Mp3TagEditor.Events;
+﻿namespace spiraspiraMp3TagEditor.Events;
 
 /// <summary>
 /// Contains event handlers used by multiple classes in the whole application.
