@@ -1,4 +1,4 @@
-﻿namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
+﻿namespace spiraspiraMp3TagEditor.Extensions;
 
 /// <summary>
 /// Contains extension methods for <see cref="List{T}"/> of <see cref="string"/>.

@@ -1,4 +1,4 @@
-﻿namespace HERKUSMONTAS88Mp3TagEditor.Extensions;
+﻿namespace spiraspiraMp3TagEditor.Extensions;
 
 /// <summary>
 /// Contains extension methods for <see cref="List{T}"/> of <see cref="TagLib.File"/>.
@@ -55,7 +55,7 @@ public static class TagLibFileListExtension
 
 			return;
 		}
-		
+
 		files.ToList().ForEach(f => f.Tag.Pictures = new IPicture[] { new Picture(artworkFilePath) });
 
 		SharedEvents.InvokeNotify("Artwork is set.", true);

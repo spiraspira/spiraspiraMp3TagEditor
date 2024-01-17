@@ -1,4 +1,4 @@
-﻿namespace HERKUSMONTAS88Mp3TagEditor.Statics;
+﻿namespace spiraspiraMp3TagEditor.Statics;
 
 /// <summary>
 /// Contains methods that return files/directories data.

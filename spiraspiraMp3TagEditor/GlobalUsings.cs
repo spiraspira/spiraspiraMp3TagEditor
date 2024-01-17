@@ -1,9 +1,9 @@
 // Global using directives
 
+global using spiraspiraMp3TagEditor.Events;
+global using spiraspiraMp3TagEditor.Extensions;
+global using spiraspiraMp3TagEditor.Statics;
 global using System.Text.RegularExpressions;
-global using HERKUSMONTAS88Mp3TagEditor.Events;
-global using HERKUSMONTAS88Mp3TagEditor.Extensions;
-global using HERKUSMONTAS88Mp3TagEditor.Statics;
 global using TagLib;
-global using NumberTitle = System.Tuple<uint, string>;
 global using NumberTitleList = System.Collections.Generic.List<System.Tuple<uint, string>>;
+global using NumberTitle = System.Tuple<uint, string>;
