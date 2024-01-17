@@ -3,17 +3,16 @@
 SharedEvents.Notify += Log;
 
 //https://regex-generator.olafneumann.org
-List<Regex> correctFileNamePatters = new()
-{
-
+List<Regex> correctFileNamePatters =
+[
 	new(@"([0-9]+)\s(.+)"), //1 title.mp3
 	new(@"([0-9]+)\.\s(.+)"), //1. title.mp3
-	new(@"([0-9]+)-(.+)") //1-title.mp3
-};
+	new(@"([0-9]+)-(.+)")
+];
 
 List<string>
-	audioExtensions = new() { "mp3", "wav", "flac" },
-	artworkExtensions = new() { "jpg", "png" };
+	audioExtensions = ["mp3", "wav", "flac"],
+	artworkExtensions = ["jpg", "png"];
 
 const string
 	artworkFileName = "cover";

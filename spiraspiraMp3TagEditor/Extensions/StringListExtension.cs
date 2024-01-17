@@ -43,7 +43,7 @@ public static class StringListExtension
 			Match? GetMatch(string input, List<Regex> patterns)
 			{
 				return patterns
-					.FirstOrDefault(pattern => pattern.IsMatch(input))?
+					.Find(pattern => pattern.IsMatch(input))?
 					.Match(input);
 			}
 		}
