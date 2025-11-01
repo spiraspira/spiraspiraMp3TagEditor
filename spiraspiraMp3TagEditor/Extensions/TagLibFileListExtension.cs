@@ -56,7 +56,7 @@ public static class TagLibFileListExtension
 			return;
 		}
 
-		files.ToList().ForEach(f => f.Tag.Pictures = new IPicture[] { new Picture(artworkFilePath) });
+		files.ToList().ForEach(f => f.Tag.Pictures = [new Picture(artworkFilePath)]);
 
 		SharedEvents.InvokeNotify("Artwork is set.", true);
 	}
@@ -68,9 +68,9 @@ public static class TagLibFileListExtension
 	/// <param name="artist">Artist name.</param>
 	public static void SetArtist(this List<TagLib.File> files, string artist)
 	{
-		files.ToList().ForEach(f => f.Tag.Performers = new[] { artist });
+		files.ToList().ForEach(f => f.Tag.Performers = [artist]);
 
-		files.ToList().ForEach(f => f.Tag.AlbumArtists = new[] { artist });
+		files.ToList().ForEach(f => f.Tag.AlbumArtists = [artist]);
 
 		SharedEvents.InvokeNotify($"Artist <{artist}> is set.", true);
 	}
@@ -82,7 +82,7 @@ public static class TagLibFileListExtension
 	/// <param name="genre">Genre name.</param>
 	public static void SetGenre(this List<TagLib.File> files, string genre)
 	{
-		files.ToList().ForEach(f => f.Tag.Genres = new[] { genre });
+		files.ToList().ForEach(f => f.Tag.Genres = [genre]);
 
 		SharedEvents.InvokeNotify($"Genre <{genre}> is set.", true);
 	}
