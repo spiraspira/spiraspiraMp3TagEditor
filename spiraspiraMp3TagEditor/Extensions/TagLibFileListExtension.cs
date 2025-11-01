@@ -70,6 +70,8 @@ public static class TagLibFileListExtension
 	{
 		files.ToList().ForEach(f => f.Tag.Performers = new[] { artist });
 
+		files.ToList().ForEach(f => f.Tag.AlbumArtists = new[] { artist });
+
 		SharedEvents.InvokeNotify($"Artist <{artist}> is set.", true);
 	}
 
