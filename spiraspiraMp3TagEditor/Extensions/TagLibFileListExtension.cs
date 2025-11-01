@@ -6,6 +6,17 @@
 public static class TagLibFileListExtension
 {
 	/// <summary>
+	/// Removes all tags from a list of audio files.
+	/// </summary>
+	/// <param name="files"><see cref="TagLib.File"/> list.</param>
+	public static void RemoveAllTags(this List<TagLib.File> files)
+	{
+		files.ToList().ForEach(f => f.RemoveTags(TagTypes.AllTags));
+
+		SharedEvents.InvokeNotify("Tags are cleared.", true);
+	}
+
+	/// <summary>
 	/// Writes <see cref="TagLib.File"/>s to file.
 	/// </summary>
 	/// <param name="files"><see cref="TagLib.File"/> list.</param>
