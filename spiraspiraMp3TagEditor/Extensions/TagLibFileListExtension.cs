@@ -11,7 +11,16 @@ public static class TagLibFileListExtension
 	/// <param name="files"><see cref="TagLib.File"/> list.</param>
 	public static void RemoveAllTags(this List<TagLib.File> files)
 	{
-		files.ToList().ForEach(f => f.RemoveTags(TagTypes.AllTags));
+		files.ToList().ForEach(f =>
+		{
+			foreach (TagTypes tagType in Enum.GetValues(typeof(TagTypes)))
+			{
+				if (tagType != TagTypes.None && f.GetTag(tagType) != null)
+				{
+					f.GetTag(tagType).Clear();
+				}
+			}
+		});
 
 		SharedEvents.InvokeNotify("Tags are cleared.", true);
 	}
