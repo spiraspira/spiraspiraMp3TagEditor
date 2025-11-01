@@ -6,6 +6,26 @@
 public static class TagLibFileListExtension
 {
 	/// <summary>
+	/// Removes all tags from a list of audio files.
+	/// </summary>
+	/// <param name="files"><see cref="TagLib.File"/> list.</param>
+	public static void RemoveAllTags(this List<TagLib.File> files)
+	{
+		files.ToList().ForEach(f =>
+		{
+			foreach (TagTypes tagType in Enum.GetValues(typeof(TagTypes)))
+			{
+				if (tagType != TagTypes.None && f.GetTag(tagType) != null)
+				{
+					f.GetTag(tagType).Clear();
+				}
+			}
+		});
+
+		SharedEvents.InvokeNotify("Tags are cleared.", true);
+	}
+
+	/// <summary>
 	/// Writes <see cref="TagLib.File"/>s to file.
 	/// </summary>
 	/// <param name="files"><see cref="TagLib.File"/> list.</param>
@@ -56,7 +76,7 @@ public static class TagLibFileListExtension
 			return;
 		}
 
-		files.ToList().ForEach(f => f.Tag.Pictures = new IPicture[] { new Picture(artworkFilePath) });
+		files.ToList().ForEach(f => f.Tag.Pictures = [new Picture(artworkFilePath)]);
 
 		SharedEvents.InvokeNotify("Artwork is set.", true);
 	}
@@ -68,7 +88,9 @@ public static class TagLibFileListExtension
 	/// <param name="artist">Artist name.</param>
 	public static void SetArtist(this List<TagLib.File> files, string artist)
 	{
-		files.ToList().ForEach(f => f.Tag.Performers = new[] { artist });
+		files.ToList().ForEach(f => f.Tag.Performers = [artist]);
+
+		files.ToList().ForEach(f => f.Tag.AlbumArtists = [artist]);
 
 		SharedEvents.InvokeNotify($"Artist <{artist}> is set.", true);
 	}
@@ -80,7 +102,7 @@ public static class TagLibFileListExtension
 	/// <param name="genre">Genre name.</param>
 	public static void SetGenre(this List<TagLib.File> files, string genre)
 	{
-		files.ToList().ForEach(f => f.Tag.Genres = new[] { genre });
+		files.ToList().ForEach(f => f.Tag.Genres = [genre]);
 
 		SharedEvents.InvokeNotify($"Genre <{genre}> is set.", true);
 	}

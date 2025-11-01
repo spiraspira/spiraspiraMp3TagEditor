@@ -51,6 +51,8 @@ List<string>
 List<TagLib.File>
 	taggedAudioFiles = audioFiles.ToTaggedFiles();
 
+taggedAudioFiles.RemoveAllTags();
+
 taggedAudioFiles.SetAlbum(album);
 
 taggedAudioFiles.SetArtist(artist);
